@@ -30,7 +30,7 @@ export default async function Home() {
   // The landing page only shows apps that have a real image or video preview.
   const showcase = apps.filter((a) => a.poster || a.video);
   const live = apps.filter((a) => a.status === "live").length;
-  const ring = [...showcase].sort((a, b) => a.sortOrder - b.sortOrder).slice(0, 10).map((a) => ({ slug: a.slug, name: a.name, poster: a.poster, color: categoryById(a.category).color, mono: initials(a.name) }));
+  const ring = [...showcase].sort((a, b) => a.sortOrder - b.sortOrder).slice(0, 10).map((a) => ({ slug: a.slug, name: a.name, poster: a.poster, color: categoryById(a.category).color, mono: initials(a.name), tagline: a.tagline, category: categoryById(a.category).label, status: a.status, liveUrl: a.liveUrl, upvotes: a.upvotes }));
   const tour = showcase.filter((a) => a.video).slice(0, 4);
   const top = [...showcase].sort((a, b) => b.upvotes - a.upvotes || a.sortOrder - b.sortOrder).slice(0, 6);
   const counts: Record<string, number> = {};
@@ -58,7 +58,7 @@ export default async function Home() {
           <div className="center stack" style={{ gap: 12 }} data-rise="">
             <span className="eyebrow">Spin the store</span>
             <JumpText as="h2" className="display h2" text="Pick one. Any one." />
-            <p className="lede" style={{ margin: 0 }}>Every card is a live app. Drag the ring, then click to open.</p>
+            <p className="lede" style={{ margin: 0, maxWidth: 620 }}>Ten featured apps on one ring. Drag it, use the arrows, or let it play. Click the front card to open it.</p>
           </div>
           <RingBand items={ring} />
         </div>

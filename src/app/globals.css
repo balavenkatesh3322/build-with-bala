@@ -276,3 +276,24 @@ html.js:not([data-motion="paused"]) [data-rise].risen { opacity: 1; transform: n
 html[data-motion="paused"] .wa::before { animation: none; opacity: 0; }
 .wa-tip { position: absolute; right: calc(100% + 12px); top: 50%; translate: 0 -50%; white-space: nowrap; background: var(--ink); color: var(--bg); font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 10px; opacity: 0; pointer-events: none; transition: opacity .2s, translate .25s; }
 .wa:hover .wa-tip, .wa:focus-visible .wa-tip { opacity: 1; translate: -4px -50%; }
+
+/* 3D app carousel ("Pick one. Any one.") */
+.carousel { display: flex; flex-direction: column; gap: 22px; margin-top: 18px; }
+.carousel-stage { position: relative; height: clamp(380px, 46vw, 600px); border-radius: 24px; outline: none; }
+.carousel-stage:focus-visible { box-shadow: 0 0 0 2px var(--accent); }
+.carousel-floor { position: absolute; left: 6%; right: 6%; bottom: 4%; height: 26%; border-radius: 50%; background: radial-gradient(ellipse at 50% 40%, var(--glow-pink), transparent 70%); filter: blur(6px); pointer-events: none; }
+.carousel-fallback { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: min(640px, 86%); border-radius: 16px; box-shadow: var(--shadow-lg); }
+.carousel-arrow { position: absolute; top: 50%; translate: 0 -50%; z-index: 3; width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--line); background: var(--glass); backdrop-filter: blur(10px); color: var(--ink); font-size: 30px; line-height: 1; display: flex; align-items: center; justify-content: center; transition: transform .3s cubic-bezier(.34,1.56,.64,1), border-color .2s; }
+.carousel-arrow:hover { transform: scale(1.08); border-color: var(--accent-line); }
+.carousel-arrow.prev { left: 8px; } .carousel-arrow.next { right: 8px; }
+.carousel-info { padding: 22px 24px; display: flex; flex-direction: column; gap: 14px; max-width: 980px; width: 100%; margin: 0 auto; background: var(--glass); backdrop-filter: blur(14px); box-shadow: var(--shadow-lg); animation: info-in .45s cubic-bezier(.22,1,.36,1); }
+@keyframes info-in { from { opacity: 0; transform: translateY(8px); } }
+.carousel-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.carousel-body { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; justify-content: space-between; }
+.carousel-body > div:first-child { flex: 1 1 360px; }
+.carousel-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.carousel-dots { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.carousel-dot { width: 10px; height: 10px; padding: 0; border-radius: 999px; border: 0; background: var(--line); transition: width .35s cubic-bezier(.34,1.56,.64,1), background .2s; }
+.carousel-dot.on { width: 30px; background: var(--accent); }
+.carousel-dot:hover { background: var(--accent-line); }
+@media (max-width: 700px) { .carousel-arrow { width: 44px; height: 44px; } .carousel-stage { height: 360px; } }
