@@ -20,7 +20,7 @@
 | Page | What it does |
 |---|---|
 | **Home** (`/`) | Interactive 3D clay field hero (touch wave, shockwave, click to spin), the App Store, a spinnable 3D ring, guided tour, leaderboard, pick-a-cube categories |
-| **App Store** (`/apps`) | All 22 apps with search and category filters |
+| **App Store** (`/apps`) | Every app (41 and counting) with search and category filters |
 | **App page** (`/apps/[slug]`) | Demo video, screenshot gallery, problem / solution / value, how to use it, how it's built, business value, real-life example, why it was built, feature requests, share |
 | **Today** (`/today`) | Daily quiz (graded on the server), poll, free drops, streak and XP |
 | **Ideas** (`/ideas`) | Pain points, app ideas, feature requests, public roadmap |

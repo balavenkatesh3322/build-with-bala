@@ -37,6 +37,7 @@ export const categories = [
   { id: "tools", label: "AI tools", blurb: "Models, RAG, data", color: "#099268", grad: "linear-gradient(135deg,#099268,#0284C7)" },
   { id: "agents-rag", label: "Agents & RAG", blurb: "Patterns you can run", color: "#7C3AED", grad: "linear-gradient(135deg,#7C3AED,#0284C7)" },
   { id: "data-ml", label: "Data & ML", blurb: "End-to-end projects", color: "#0284C7", grad: "linear-gradient(135deg,#0284C7,#12B886)" },
+  { id: "collections", label: "Collections", blurb: "Curated models & guides", color: "#0D9488", grad: "linear-gradient(135deg,#0D9488,#7C3AED)" },
   { id: "games", label: "Games", blurb: "Built for fun", color: "#D97706", grad: "linear-gradient(135deg,#D97706,#D81B60)" },
   { id: "lab", label: "Lab", blurb: "Early experiments", color: "#5F6878", grad: "linear-gradient(135deg,#5F6878,#7C3AED)" },
 ] as const;

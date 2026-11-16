@@ -30,7 +30,7 @@ export default async function Home() {
   // The landing page only shows apps that have a real image or video preview.
   const showcase = apps.filter((a) => a.poster || a.video);
   const live = apps.filter((a) => a.status === "live").length;
-  const ring = showcase.map((a) => ({ slug: a.slug, name: a.name, poster: a.poster, color: categoryById(a.category).color, mono: initials(a.name) }));
+  const ring = [...showcase].sort((a, b) => a.sortOrder - b.sortOrder).slice(0, 10).map((a) => ({ slug: a.slug, name: a.name, poster: a.poster, color: categoryById(a.category).color, mono: initials(a.name) }));
   const tour = showcase.filter((a) => a.video).slice(0, 4);
   const top = [...showcase].sort((a, b) => b.upvotes - a.upvotes || a.sortOrder - b.sortOrder).slice(0, 6);
   const counts: Record<string, number> = {};
@@ -47,7 +47,7 @@ export default async function Home() {
             <JumpText as="h2" className="display h2" text="Every app. One store." />
             <p className="lede" style={{ margin: 0, maxWidth: 600 }}>Each app solves one real problem. Move over a card to tilt it and preview the demo, then open it to try it and upvote what you love.</p>
           </div>
-          <div data-rise=""><Suspense fallback={<div className="skeleton" style={{ height: 480 }} />}><AppStore apps={showcase} searchable={false} hideEmpty /></Suspense></div>
+          <div data-rise=""><Suspense fallback={<div className="skeleton" style={{ height: 480 }} />}><AppStore apps={showcase} limit={12} searchable={false} hideEmpty /></Suspense></div>
           <div style={{ display: "flex", justifyContent: "center", marginTop: 32 }} data-rise=""><Link href="/apps" className="btn btn-ghost btn-lg">See all {apps.length} apps in the store →</Link></div>
         </div>
         <Wave />

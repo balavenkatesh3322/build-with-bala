@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { LogoMark, OG_SIZE, ogBackground, ogFonts } from "@/lib/og";
 import { site } from "@/lib/site";
+import { appsData } from "@/lib/apps-data";
 
 export const alt = `${site.name}: ${site.tagline}`;
 export const size = OG_SIZE;
@@ -21,7 +22,7 @@ export default async function Image() {
           The Bala App Store: interactive AI apps, 3D explainers, tools and games. Free to try.
         </div>
         <div style={{ position: "absolute", bottom: 50, left: 90, display: "flex", gap: 14, fontSize: 24, color: "#f06695" }}>
-          <span>22 apps</span><span style={{ color: "#5f6878" }}>·</span><span>Learn in 3D</span><span style={{ color: "#5f6878" }}>·</span><span>New app every week</span>
+          <span>{appsData.length} apps</span><span style={{ color: "#5f6878" }}>·</span><span>Learn in 3D</span><span style={{ color: "#5f6878" }}>·</span><span>New app every week</span>
         </div>
       </div>
     ),
