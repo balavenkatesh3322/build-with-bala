@@ -39,6 +39,7 @@ export default function IdeaForm({ kind, appSlug, apps, compact = false, onCreat
         }),
       });
       const d = await res.json();
+      if (d.demo) { notify(d.error || "This feature is a work in progress. It opens very soon!"); return; }
       if (!res.ok || !d.ok) throw new Error(d.error || "Could not save right now.");
       if (d.idea) onCreated(d.idea as IdeaRow);
       setText(""); setEmail("");

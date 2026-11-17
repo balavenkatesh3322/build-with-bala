@@ -1,6 +1,7 @@
 import "server-only";
 import { appsData } from "./apps-data";
-import { publicDb } from "./supabase";
+import { hasAdminDb, publicDb } from "./supabase";
+import { showcaseIdeaVotes, showcaseVotes } from "./seed";
 import { appDetails, type AppStory } from "./app-details";
 
 export type AppRow = {
@@ -98,7 +99,14 @@ const fallbackApps = (): AppRow[] =>
     .sort((x, y) => x.sortOrder - y.sortOrder);
 
 /** Apps with live upvote counts. Falls back to the bundled catalogue if the DB isn't reachable. */
+/** Without live saving, show stable showcase counts so votes still feel alive. */
+const withShowcase = (apps: AppRow[]) => (hasAdminDb ? apps : apps.map((a) => ({ ...a, upvotes: showcaseVotes(a.slug, a.featured) })));
+
 export async function getApps(): Promise<AppRow[]> {
+  return withShowcase(await loadApps());
+}
+
+async function loadApps(): Promise<AppRow[]> {
   const db = publicDb();
   if (!db) return fallbackApps();
   try {
@@ -128,6 +136,12 @@ const starterIdeas: IdeaRow[] = [
 
 /** Approved ideas, pain points and feature requests with vote counts. */
 export async function getIdeas(): Promise<{ ideas: IdeaRow[]; live: boolean }> {
+  const r = await loadIdeas();
+  if (hasAdminDb && r.live) return r;
+  return { live: false, ideas: r.ideas.map((i) => ({ ...i, votes: showcaseIdeaVotes(i.id) })) };
+}
+
+async function loadIdeas(): Promise<{ ideas: IdeaRow[]; live: boolean }> {
   const db = publicDb();
   if (!db) return { ideas: starterIdeas, live: false };
   try {

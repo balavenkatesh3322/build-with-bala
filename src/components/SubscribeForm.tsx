@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function SubscribeForm({ source, id, light = false, cta = "Subscribe" }: { source: string; id: string; light?: boolean; cta?: string }) {
   const [email, setEmail] = useState("");
-  const [state, setState] = useState<"idle" | "busy" | "done" | "error">("idle");
+  const [state, setState] = useState<"idle" | "busy" | "done" | "error" | "wip">("idle");
   const [msg, setMsg] = useState("");
   const [trap, setTrap] = useState("");
 
@@ -13,6 +13,7 @@ export default function SubscribeForm({ source, id, light = false, cta = "Subscr
     try {
       const res = await fetch("/api/subscribe", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, source, website: trap }) });
       const d = await res.json();
+      if (d.demo) { setState("wip"); setMsg(d.error || "This feature is a work in progress. It opens very soon!"); return; }
       if (!res.ok || !d.ok) throw new Error(d.error || "Something went wrong.");
       setState("done"); setMsg(d.already ? "You're already subscribed. Thank you!" : "You're in! Check your inbox for a welcome note.");
     } catch (err) {
@@ -27,6 +28,7 @@ export default function SubscribeForm({ source, id, light = false, cta = "Subscr
       <input id={id} className="field" style={{ flex: "1 1 220px", height: 52, background: light ? "var(--surface)" : undefined }} type="email" required placeholder="you@email.com" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" />
       <input tabIndex={-1} autoComplete="off" aria-hidden="true" value={trap} onChange={(e) => setTrap(e.target.value)} className="sr" name="website" />
       <button type="submit" className="btn btn-accent btn-lg" disabled={state === "busy"}>{state === "busy" ? "Joining…" : cta}</button>
+      {state === "wip" && <p role="status" style={{ flexBasis: "100%", margin: 0, fontSize: 14, color: "var(--ink2)" }}>🚧 {msg}</p>}
       {state === "error" && <p role="alert" style={{ flexBasis: "100%", margin: 0, fontSize: 14, color: "var(--accent-text)" }}>{msg}</p>}
     </form>
   );

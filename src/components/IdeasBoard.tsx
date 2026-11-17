@@ -40,7 +40,6 @@ export default function IdeasBoard({ initial, apps, live }: { initial: IdeaRow[]
         <div className="wrap row" style={{ gap: 28, alignItems: "flex-start" }}>
           <div style={{ flex: "1 1 400px", minWidth: 0 }}>
             <IdeaForm key={kind} kind={kind} apps={apps} onCreated={(i) => setItems((x) => [i, ...x])} />
-            {!live && <p className="faint" style={{ fontSize: 13, marginTop: 12 }}>The database isn&apos;t connected yet, so submissions are paused. Showing starter ideas.</p>}
           </div>
           <div style={{ flex: "999 1 560px", minWidth: 0 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 10, marginBottom: 14 }}>

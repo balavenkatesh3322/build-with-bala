@@ -2,7 +2,7 @@ import { ctx, isUuid, json } from "@/lib/api";
 
 export async function POST(_req: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  if (!isUuid(id)) return json({ ok: false, error: "This is a sample idea. It becomes votable once the database is connected." }, 400);
+  if (!isUuid(id)) return json({ ok: false, demo: true }, 200);
   const c = await ctx();
   if ("error" in c) return c.error;
   const { db, voter } = c;

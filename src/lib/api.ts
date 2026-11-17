@@ -16,16 +16,17 @@ export async function voterId(): Promise<string | null> {
 
 export const json = (body: unknown, status = 200) => NextResponse.json(body, { status });
 
-export const notConfigured = () =>
-  json({ ok: false, error: "The database isn't connected yet. Add your Supabase keys to enable this." }, 503);
+/** Live saving isn't switched on yet: the client keeps working in demo mode. */
+export const WIP = "This feature is a work in progress. It opens very soon, thanks for your patience!";
+export const demoMode = () => json({ ok: false, demo: true, error: WIP }, 200);
 
 /** Resolve the DB + voter or return a ready-made error response. */
 export async function ctx(): Promise<
   { db: NonNullable<ReturnType<typeof adminDb>>; voter: string } | { error: NextResponse }
 > {
   const db = adminDb();
-  if (!db) return { error: notConfigured() };
+  if (!db) return { error: demoMode() };
   const voter = await voterId();
-  if (!voter) return { error: json({ ok: false, error: "Please reload the page and try again." }, 401) };
+  if (!voter) return { error: json({ ok: false, error: "Please refresh the page and try again." }, 401) };
   return { db, voter };
 }

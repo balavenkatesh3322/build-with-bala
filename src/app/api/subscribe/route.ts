@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { adminDb } from "@/lib/supabase";
-import { json, notConfigured } from "@/lib/api";
+import { demoMode, json } from "@/lib/api";
 import { site } from "@/lib/site";
 
 const schema = z.object({
@@ -34,7 +34,7 @@ async function welcome(email: string) {
 
 export async function POST(req: Request) {
   const db = adminDb();
-  if (!db) return notConfigured();
+  if (!db) return demoMode();
   let body: unknown;
   try { body = await req.json(); } catch { return json({ ok: false, error: "Bad request" }, 400); }
   const parsed = schema.safeParse(body);
