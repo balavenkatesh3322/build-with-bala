@@ -20,7 +20,7 @@ export default function Cubes({ counts }: { counts: Record<string, number> }) {
   ));
   return (
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))", gap: 16 }}>
-      {categories.map((c) => (
+      {categories.filter((c) => c.id !== "data-ml").map((c) => (
         <button key={c.id} type="button" className="cube-btn" onClick={() => open(c.id)} aria-label={`${c.label}: ${counts[c.id] ?? 0} apps. Open category`}
           style={{ background: "transparent", border: 0, color: "var(--ink)", display: "flex", flexDirection: "column", alignItems: "center", gap: 34, padding: "48px 0 8px", perspective: 900 }}>
           <div className={`cube${spun === c.id ? " spun" : ""}`}>{faces(c.color, counts[c.id] ?? 0)}</div>
