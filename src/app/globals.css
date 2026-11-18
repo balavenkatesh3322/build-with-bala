@@ -297,3 +297,6 @@ html[data-motion="paused"] .wa::before { animation: none; opacity: 0; }
 .carousel-dot.on { width: 30px; background: var(--accent); }
 .carousel-dot:hover { background: var(--accent-line); }
 @media (max-width: 700px) { .carousel-arrow { width: 44px; height: 44px; } .carousel-stage { height: 360px; } }
+
+/* maker pull-quote */
+.maker-quote { margin: 6px 0 4px; padding: 4px 0 4px 18px; border-left: 3px solid var(--pink); font-family: var(--font-display), system-ui, sans-serif; font-size: clamp(1.1rem, 1rem + .5vw, 1.35rem); font-weight: 600; line-height: 1.45; letter-spacing: -.01em; color: var(--ink); }

@@ -166,6 +166,7 @@ export default async function Home() {
           <div className="stack" style={{ flex: "1 1 420px", minWidth: 0, gap: 8 }}>
             <span className="eyebrow">The maker</span>
             <JumpText as="h2" className="display h3" text="Hi, I'm Bala. I make AI you can see." />
+            <blockquote className="maker-quote">“I love building things, experimenting with ideas, and turning curiosity into real-world products.”</blockquote>
             <p className="muted" style={{ margin: 0, fontSize: 16, lineHeight: 1.6 }}>Every app here started as a question I wanted to answer visually. I build in public, write about what I learn, and ship something new every week.</p>
           </div>
           <div className="stack" style={{ gap: 10 }}>
