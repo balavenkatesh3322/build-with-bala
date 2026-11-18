@@ -159,15 +159,14 @@ export default async function Home() {
         <Wave to="var(--hero)" />
       </section>
 
-      <section className="band tiled violet" style={{ paddingTop: 80, paddingBottom: 80 }}>
+      <section id="maker" className="band tiled violet" style={{ paddingTop: 80, paddingBottom: 80 }}>
         <div className="wrap card row" style={{ gap: 28, alignItems: "center", padding: 30, boxShadow: "var(--shadow-lg)" }} data-rise="">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/bala.jpg" alt="Bala Venkatesh" width={112} height={112} style={{ borderRadius: "50%", objectFit: "cover", boxShadow: "0 0 0 4px var(--accent-soft), 0 0 0 5px var(--accent-line)" }} />
           <div className="stack" style={{ flex: "1 1 420px", minWidth: 0, gap: 8 }}>
             <span className="eyebrow">The maker</span>
             <JumpText as="h2" className="display h3" text="Hi, I'm Bala. I make AI you can see." />
-            <blockquote className="maker-quote">“I love building things, experimenting with ideas, and turning curiosity into real-world products.”</blockquote>
-            <p className="muted" style={{ margin: 0, fontSize: 16, lineHeight: 1.6 }}>Every app here started as a question I wanted to answer visually. I build in public, write about what I learn, and ship something new every week.</p>
+            <blockquote className="maker-quote">I love building things, experimenting with ideas, and turning curiosity into <span className="grad-text">real-world products.</span></blockquote>
           </div>
           <div className="stack" style={{ gap: 10 }}>
             <a href={site.portfolio} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Know more about Bala ↗</a>

@@ -299,4 +299,5 @@ html[data-motion="paused"] .wa::before { animation: none; opacity: 0; }
 @media (max-width: 700px) { .carousel-arrow { width: 44px; height: 44px; } .carousel-stage { height: 360px; } }
 
 /* maker pull-quote */
-.maker-quote { margin: 6px 0 4px; padding: 4px 0 4px 18px; border-left: 3px solid var(--pink); font-family: var(--font-display), system-ui, sans-serif; font-size: clamp(1.1rem, 1rem + .5vw, 1.35rem); font-weight: 600; line-height: 1.45; letter-spacing: -.01em; color: var(--ink); }
+.maker-quote { position: relative; margin: 10px 0 2px; padding: 6px 0 6px 22px; border-left: 4px solid var(--pink); font-family: var(--font-display), system-ui, sans-serif; font-size: clamp(1.45rem, 1.05rem + 1.5vw, 2.15rem); font-weight: 700; line-height: 1.25; letter-spacing: -.02em; color: var(--ink); text-wrap: balance; }
+.maker-quote::before { content: ""; position: absolute; left: -4px; top: 0; bottom: 0; width: 4px; background: linear-gradient(var(--pink), var(--violet)); }

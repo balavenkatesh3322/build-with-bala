@@ -59,7 +59,6 @@ export default function Hero({ stats }: { stats: { apps: number; live: number; s
               { text: "Bala", accent: true, squiggle: true },
               { text: ".", glue: true },
             ]} />
-          <p className="hero-lede"><strong className="hero-lede-lead">The Bala App Store.</strong> {stats.apps} AI apps, each built to solve a real problem. Try any of them free in seconds, then see exactly how it was built.</p>
           <div className="hero-actions">
             <Link href="#store" className="btn btn-accent btn-lg">Open the App Store <span aria-hidden="true">→</span></Link>
             <Link href="/today" className="btn btn-ghost btn-lg glass">Today&apos;s 5-minute drop</Link>
